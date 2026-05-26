@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Iskaro AB | State-of-the-art Modern Forest Industry</title>
+<link href="dist/output.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css"/>
+<script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+<link href="style.css" rel="stylesheet">
+</head>
+<body class="antialiased selection:bg-tertiary selection:text-surface-container-lowest">
+
+<!-- Dynamic page-wide forest video atmosphere -->
+<!-- TopAppBar Component -->
+<header class="fixed top-0 w-full z-50 glass-panel transition-all duration-300" id="navbar">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-2xl animate-pulse">radar</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase tracking-widest font-bold">Iskaro AB</span>
+</div>
+<nav class="hidden lg:flex items-center gap-7 font-label-caps text-label-caps text-on-surface-variant">
+<a class="hover:text-tertiary transition-colors" href="#services">Services</a>
+<a class="hover:text-tertiary transition-colors" href="#approach">Approach</a>
+<a class="hover:text-tertiary transition-colors" href="#contact">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="hidden sm:inline-block px-3 py-1 bg-surface-container-high rounded text-[10px] font-label-caps tracking-widest text-outline">EE • FI • SE</span>
+<a href="mailto:info.holtor@gmail.com" class="w-full md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-10 py-4 rounded-xl font-label-caps text-label-caps hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300">
+        Request a Quote
+</a>
+</div>
+</div>
+</header>
+
+<div id="smooth-wrapper" class="relative z-10">
+<div id="smooth-content">
+<!-- Hero Section -->
+<section class="min-h-screen relative overflow-hidden flex items-center justify-center" id="hero-section">
+<!-- Bright looped forest video background -->
+<video autoplay class="absolute inset-0 w-full h-full object-cover z-0 opacity-100" loop muted playsinline preload="auto" src="./assets/hero-bg.mp4"></video>
+<!-- Light readability overlay keeps text clear without burying the video -->
+<div class="absolute inset-0 video-overlay z-20"></div>
+<!-- One-line CSS blend-mode typography over photography 
+<div class="hero-photo-type" aria-hidden="true">FOREST</div> -->
+<!-- Hero Card (on top of everything) -->
+<div id="hero-copy" class="relative z-30 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-16">
+<div class="hero-card max-w-3xl ml-auto md:ml-auto space-y-6 p-7 md:p-12 rounded-xl animate-fade-up">
+<div class="flex items-center gap-2 mb-2">
+<span class="h-px w-8 bg-tertiary"></span>
+<span class="font-label-caps text-label-caps text-tertiary tracking-widest">FORESTRY • CLEARING • INFRASTRUCTURE</span>
+</div>
+<h1 class="font-headline-xl text-on-surface leading-tight clamp-xl split-text font-bold" data-splitting>Precision forestry work for demanding Nordic terrain.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">Iskaro AB supports landowners, companies and infrastructure operators with brush clearing, tree cutting, planting, forest maintenance and power-line corridor clearing across Estonia, Finland and Sweden.</p>
+<div class="pt-4 flex flex-col sm:flex-row gap-4">
+<a href="mailto:info.holtor@gmail.com" class="w-full md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-10 py-4 rounded-xl font-label-caps text-label-caps hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300">
+        Discuss Your Project
+</a>
+<a href="tel:+37253904998" class="w-full md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-10 py-4 rounded-xl font-label-caps text-label-caps hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300">
+        Call the Team
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<div class="section-transition" aria-hidden="true"></div>
+
+<!-- Content Wrapper with edge fade blending into hero video -->
+<div class="relative z-20 living-page-bg glass-section bg-surface section-edge-fade">
+<!-- Services Section (Layered Flow) -->
+<section id="services" class="glass-section pt-32 pb-24 px-margin-mobile md:px-margin-desktop rounded-t-[2rem] shadow-[0_-20px_50px_rgba(0,0,0,0.6)] border-t border-white/5 -mt-8 bg-surface">
+<div class="max-w-container-max mx-auto">
+<div class="mb-16 reveal max-w-3xl">
+<div class="flex items-center gap-2 mb-4">
+<span class="font-label-caps text-label-caps text-tertiary tracking-widest">Core Capabilities</span>
+<span class="h-px w-16 bg-surface-container-highest"></span>
+</div>
+<h2 class="clamp-lg font-bold text-on-surface mb-6">Services built for field conditions</h2>
+<p class="font-body-md text-body-md text-on-surface-variant text-lg leading-relaxed">A well-managed forest grows stronger, safer and more valuable over time. We provide practical forestry services for landowners, companies and infrastructure projects — with careful planning, reliable fieldwork and respect for the surrounding environment.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+<!-- Service 1: Powerline Corridor -->
+<div class="glass-card rounded-lg p-8 hover:border-tertiary/50 transition-all duration-500 group reveal" data-mode="corridor">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-4xl text-tertiary transition-transform duration-500 group-hover:scale-110">bolt</span>
+<span class="font-label-caps text-on-surface-variant">01 / INFRASTRUCTURE</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">Safe corridors. Reliable access. Fewer risks.</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">We clear brush, small trees and hazardous edge trees around power lines and service corridors. Our work helps reduce outage risks, improves access for maintenance teams, and keeps the surrounding area safer for landowners and infrastructure operators.</p>
+</div>
+
+<!-- Service 2: Young Forest Thinning -->
+<div class="glass-card rounded-lg p-8 hover:border-tertiary/50 transition-all duration-500 group reveal delay-100" data-mode="thinning">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-4xl text-tertiary transition-transform duration-500 group-hover:scale-110">forest</span>
+<span class="font-label-caps text-on-surface-variant">02 / SILVICULTURE</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">Give the best trees room to grow.</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Young forest clearing removes weak, damaged or poorly placed trees so the strongest trees can develop better trunks, crowns and root systems. Done at the right time, clearing improves future thinning results and supports a healthier, more valuable forest.</p>
+</div>
+
+<!-- Service 3: Hazardous Removal -->
+<div class="glass-card rounded-lg p-8 hover:border-tertiary/50 transition-all duration-500 group reveal" data-mode="hazard">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-4xl text-tertiary transition-transform duration-500 group-hover:scale-110">warning</span>
+<span class="font-label-caps text-on-surface-variant">03 / RISK MANAGEMENT</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">Hazardous Tree Removal</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">We remove leaning, storm-damaged and structurally unsafe trees near access roads, buildings, utility corridors and working areas with controlled planning and careful execution.</p>
+</div>
+
+<!-- Service 4: Reforestation -->
+<div class="glass-card rounded-lg p-8 hover:border-tertiary/50 transition-all duration-500 group reveal delay-100" data-mode="planting">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-4xl text-tertiary transition-transform duration-500 group-hover:scale-110">potted_plant</span>
+<span class="font-label-caps text-on-surface-variant">04 / REGENERATION</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">Forest Planting & Regeneration</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">From site preparation to planting support, we help establish young forest stands with practical spacing, species-aware planning and long-term forest health in mind.</p>
+</div>
+
+<!-- Service 5: Brush Clearing -->
+<div class="glass-card rounded-lg p-8 hover:border-tertiary/50 transition-all duration-500 group reveal" data-mode="thinning">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-4xl text-tertiary transition-transform duration-500 group-hover:scale-110">grass</span>
+<span class="font-label-caps text-on-surface-variant">05 / CLEARING</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">Brush Clearing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Open access routes, reclaim overgrown areas and prepare land for maintenance or future work with efficient brush and small-tree clearing.</p>
+</div>
+
+<!-- Service 6: Tree Cutting -->
+<div class="glass-card rounded-lg p-8 hover:border-tertiary/50 transition-all duration-500 group reveal delay-100" data-mode="hazard">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-4xl text-tertiary transition-transform duration-500 group-hover:scale-110">carpenter</span>
+<span class="font-label-caps text-on-surface-variant">06 / CUTTING</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">Tree Cutting</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Controlled cutting for land management, safety, access and forestry maintenance — planned around terrain, surroundings and project requirements.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- About & Architecture Section (Bento Layout) -->
+<section id="approach" class="glass-section pb-24 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+<!-- About Iskaro -->
+<div class="frosted-panel lg:col-span-5 bg-surface-container rounded-xl p-10 flex flex-col justify-center border border-surface-container-highest reveal">
+<span class="material-symbols-outlined text-5xl text-tertiary mb-8">shield_with_heart</span>
+<h2 class="clamp-lg font-bold text-on-surface mb-6">Modern fieldwork, grounded in forestry experience</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">The visual system is modern, but the promise is simple: clear communication, reliable site work and practical forestry services for private landowners, companies and infrastructure operators.</p>
+<div class="mt-auto pt-8 border-t border-surface-container-highest">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-bright flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">gavel</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-tertiary">Founded in 2021</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Serving Estonia, Finland and Sweden</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Metrics/Features -->
+<div class="lg:col-span-7 grid grid-rows-2 gap-6 md:gap-8">
+<div class="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-100 flex flex-col justify-center">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Power-line corridors, forest stands and land access</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">We combine power-line clearing, brush control, tree cutting, hazardous removal, planting and maintenance into one clear service offer for Nordic terrain.</p>
+<div class="mt-6 flex gap-3">
+<span class="px-3 py-1.5 bg-surface-bright rounded text-xs font-semibold text-primary">Sweden</span>
+<span class="px-3 py-1.5 bg-surface-bright rounded text-xs font-semibold text-primary">Finland</span>
+<span class="px-3 py-1.5 bg-surface-bright rounded text-xs font-semibold text-primary">Estonia</span>
+</div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+<div class="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-200">
+<span class="material-symbols-outlined text-3xl text-tertiary mb-4">analytics</span>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">Long-Term Value</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Better spacing, safer access and healthier stands through timely maintenance.</p>
+</div>
+<div class="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-300">
+<span class="material-symbols-outlined text-3xl text-tertiary mb-4">health_and_safety</span>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">Risk Interception</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Reducing risks around lines, roads and work areas before they become problems.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Contact CTA -->
+<section id="contact" class="glass-section py-32 px-margin-mobile md:px-margin-desktop overflow-hidden flex items-center justify-center text-center relative">
+<div class="glass-card rounded-2xl p-10 md:p-12 max-w-2xl w-full relative z-10">
+<div class="relative z-10 max-w-3xl mx-auto space-y-10 reveal">
+
+<h2 class="clamp-lg font-bold text-on-surface">Plan your next forestry project</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Send the location, service type and timeline. We will help clarify the work scope.</p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6 pt-4">
+<a href="mailto:info.holtor@gmail.com" class="w-full md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-10 py-4 rounded-xl font-label-caps text-label-caps hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300">
+                        Send Project Details
+</a>
+</div>
+
+<div class="flex flex-col md:flex-row items-center justify-center gap-12 mt-16 pt-12 border-t border-surface-container-highest">
+<div class="flex items-center gap-4 text-left group cursor-pointer">
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center border border-surface-container-highest group-hover:border-tertiary transition-colors">
+<span class="material-symbols-outlined text-tertiary">support_agent</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Logistics (Andrus)</div>
+<a class="font-body-lg text-body-lg text-on-surface group-hover:text-tertiary transition-colors" href="tel:+37253904998">+372 5390 4998</a>
+</div>
+</div>
+<div class="flex items-center gap-4 text-left group cursor-pointer">
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center border border-surface-container-highest group-hover:border-tertiary transition-colors">
+<span class="material-symbols-outlined text-tertiary">engineering</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Operations (Maksim)</div>
+<a class="font-body-lg text-body-lg text-on-surface group-hover:text-tertiary transition-colors" href="tel:+3725549366">+372 554 9366</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="w-full glass-section bg-surface-container-lowest border-t border-surface-container-highest">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
+<div class="md:col-span-4 lg:col-span-5">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-tertiary text-2xl">precision_manufacturing</span>
+<span class="font-headline-md text-headline-md text-on-surface uppercase tracking-widest font-bold">Iskaro AB</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">© 2026 Iskaro AB. Modern forestry, clearing and power-line corridor services across Estonia, Finland and Sweden.</p>
+</div>
+<div class="md:col-span-8 lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-6">Solutions</h4>
+<nav class="flex flex-col gap-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Corridor Clearing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Young Forest Thinning</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Hazardous Extraction</a>
+</nav>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-6">Company</h4>
+<nav class="flex flex-col gap-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Approach</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="https://iskaro.net/">Iskaro AB</a>
+</nav>
+</div>
+<div class="col-span-2 md:col-span-1">
+<h4 class="font-label-caps text-label-caps text-on-surface mb-6">Status</h4>
+<div class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded border border-surface-container-highest inline-flex">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Available for projects</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+
+<!-- Dynamic Engineering Framework Scripts -->
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Splitting.js: title arrives character-by-character without breaking words
+            if (window.Splitting) {
+                Splitting({ target: '[data-splitting]', by: 'chars' });
+            }
+
+            // GSAP ScrollTrigger Section Pinning
+            gsap.registerPlugin(ScrollTrigger);
+            
+            ScrollTrigger.create({
+                trigger: "#hero-section",
+                start: "top top",
+                end: "bottom top",
+                pin: true,
+                pinSpacing: false,
+                scrub: true
+            });
+
+            // Fade the hero text card out as the living green page rises over it.
+            // A direct scroll-linked transform keeps this smooth even while the hero is pinned.
+            const heroCopy = document.getElementById('hero-copy');
+            function syncHeroFade() {
+                if (!heroCopy) return;
+                const p = Math.min(1, Math.max(0, window.scrollY / 360));
+                heroCopy.style.opacity = String(1 - p);
+                heroCopy.style.transform = `translateY(${-56 * p}px) scale(${1 - 0.04 * p})`;
+                heroCopy.style.pointerEvents = p > 0.7 ? 'none' : 'auto';
+            }
+            window.addEventListener('scroll', syncHeroFade, { passive: true });
+            syncHeroFade();
+
+            // Scannable Intersection Tracking Frame
+            const reveals = document.querySelectorAll('.reveal');
+            function checkReveal() {
+                const windowHeight = window.innerHeight;
+                reveals.forEach(reveal => {
+                    const revealTop = reveal.getBoundingClientRect().top;
+                    if(revealTop < windowHeight - 80) {
+                        reveal.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkReveal);
+            checkReveal();
+
+            // Native Smooth Header Adaptations
+            const navbar = document.getElementById('navbar');
+            if(navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 40) {
+                        navbar.classList.add('bg-surface-container-lowest/90', 'border-b', 'border-surface-container-highest');
+                    } else {
+                        navbar.classList.remove('bg-surface-container-lowest/90', 'border-b', 'border-surface-container-highest');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
