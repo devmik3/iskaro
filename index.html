@@ -32,7 +32,7 @@
 </nav>
 <div class="flex items-center gap-4">
 <span class="hidden sm:inline-block px-3 py-1 bg-surface-container-high rounded text-[10px] font-label-caps tracking-widest text-outline">EE • FI • SE</span>
-<a href="mailto:info.holtor@gmail.com" class="w-full md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-10 py-4 rounded-xl font-label-caps text-label-caps hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300">
+<a href="mailto:info.holtor@gmail.com" class="top-quote-link hidden sm:inline-flex md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-5 md:px-10 py-3 md:py-4 rounded-lg md:rounded-xl font-label-caps text-label-caps whitespace-nowrap hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300">
         Request a Quote
 </a>
 </div>
@@ -44,9 +44,9 @@
 <!-- Hero Section -->
 <section class="min-h-screen relative overflow-hidden flex flex-col justify-center pt-32" id="hero-section">
 <!-- Bright looped forest video background -->
-<video autoplay aria-hidden="true" class="absolute inset-0 w-full h-full object-cover z-0 opacity-100" loop muted playsinline preload="metadata" src="./assets/hero-org.mp4"></video>
+<video autoplay aria-hidden="true" class="fixed inset-0 w-full h-full object-cover z-0 opacity-100" loop muted playsinline preload="metadata" src="./assets/hero-org.mp4"></video>
 <!-- Light readability overlay keeps text clear without burying the video -->
-<div class="absolute inset-0 video-overlay z-20"></div>
+<div class="fixed inset-0 video-overlay z-20"></div>
 <!-- One-line CSS blend-mode typography over photography 
 <div class="hero-photo-type" aria-hidden="true">FOREST</div> -->
 <!-- Hero Card (on top of everything) -->
@@ -54,10 +54,9 @@
 <div class="hero-card max-w-3xl ml-auto md:ml-auto space-y-6 p-7 md:p-12 rounded-xl animate-fade-up">
 <div class="flex items-center gap-2 mb-2">
 <span class="h-px w-8 bg-tertiary"></span>
-<span class="font-label-caps text-label-caps text-tertiary tracking-widest">FORESTRY • CLEARING • INFRASTRUCTURE</span>
+<span class="font-label-caps text-label-caps text-tertiary tracking-widest">ESTONIA • FINLAND • SWEDEN</span>
 </div>
 <h1 class="font-headline-xl text-on-surface leading-tight clamp-xl split-text font-bold" data-splitting>Precision forestry work for demanding Nordic terrain.</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">Iskaro AB supports landowners, companies and infrastructure operators with brush clearing, tree cutting, planting, forest maintenance and power-line corridor clearing across Estonia, Finland and Sweden.</p>
 <div class="pt-4 flex flex-col sm:flex-row gap-4">
 </div>
 </div>
@@ -194,33 +193,33 @@
 </section>
 
 <!-- Contact CTA -->
-<section id="contact" class="glass-section py-32 px-margin-mobile md:px-margin-desktop overflow-hidden flex items-center justify-center text-center relative">
-<div class="glass-card rounded-2xl p-10 md:p-12 max-w-2xl w-full relative z-10">
-<div class="relative z-10 max-w-3xl mx-auto space-y-10 reveal">
+<section id="contact" class="glass-section py-20 md:py-24 px-margin-mobile md:px-margin-desktop overflow-hidden flex items-center justify-center text-center relative">
+<div class="contact-cta glass-card rounded-xl p-6 sm:p-8 md:p-9 max-w-xl w-full relative z-10">
+<div class="relative z-10 max-w-xl mx-auto space-y-6 reveal">
 
 <h2 class="clamp-lg font-bold text-on-surface">Plan your next forestry project</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Send the location, service type and timeline. We will help clarify the work scope.</p>
-<div class="flex flex-col md:flex-row items-center justify-center gap-6 pt-4">
-<a href="mailto:info.holtor@gmail.com" class="w-full md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-10 py-4 rounded-xl font-label-caps text-label-caps hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300">
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">Send the location, service type and timeline. We will help clarify the work scope.</p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4 pt-1">
+<a href="mailto:info.holtor@gmail.com" class="contact-email-link w-full sm:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-7 py-3.5 rounded-lg font-label-caps text-label-caps hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300">
                         Send Project Details
 </a>
 </div>
 
-<div class="flex flex-col md:flex-row items-center justify-center gap-12 mt-16 pt-12 border-t border-surface-container-highest">
-<div class="flex items-center gap-4 text-left group cursor-pointer">
-<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center border border-surface-container-highest group-hover:border-tertiary transition-colors">
+<div class="contact-people flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-5 md:gap-8 mt-8 pt-8 border-t border-surface-container-highest">
+<div class="flex items-center gap-3 text-left group cursor-pointer min-w-0">
+<div class="contact-icon w-10 h-10 rounded bg-surface-container-low flex shrink-0 items-center justify-center border border-surface-container-highest group-hover:border-tertiary transition-colors">
 <span class="material-symbols-outlined text-tertiary">support_agent</span>
 </div>
-<div>
+<div class="min-w-0">
 <div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Logistics (Andrus)</div>
 <a class="font-body-lg text-body-lg text-on-surface group-hover:text-tertiary transition-colors" href="tel:+37253904998">+372 5390 4998</a>
 </div>
 </div>
-<div class="flex items-center gap-4 text-left group cursor-pointer">
-<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center border border-surface-container-highest group-hover:border-tertiary transition-colors">
+<div class="flex items-center gap-3 text-left group cursor-pointer min-w-0">
+<div class="contact-icon w-10 h-10 rounded bg-surface-container-low flex shrink-0 items-center justify-center border border-surface-container-highest group-hover:border-tertiary transition-colors">
 <span class="material-symbols-outlined text-tertiary">engineering</span>
 </div>
-<div>
+<div class="min-w-0">
 <div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Operations (Maksim)</div>
 <a class="font-body-lg text-body-lg text-on-surface group-hover:text-tertiary transition-colors" href="tel:+3725549366">+372 554 9366</a>
 </div>
@@ -231,7 +230,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="w-full glass-section bg-surface-container-lowest border-t border-surface-container-highest">
+<footer class="site-footer w-full glass-section bg-surface-container-lowest border-t border-surface-container-highest">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-12 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
 <div class="md:col-span-4 lg:col-span-5">
 <div class="flex items-center gap-2 mb-6">
@@ -282,22 +281,18 @@
             // GSAP ScrollTrigger Section Pinning
             gsap.registerPlugin(ScrollTrigger);
             
-            ScrollTrigger.create({
-                trigger: "#hero-section",
-                start: "top top",
-                end: "bottom top",
-                pin: true,
-                pinSpacing: false,
-                scrub: true
-            });
-
-            // Fade the hero text card out as the living green page rises over it.
-            // Keep opacity/transform on the same element that owns backdrop-filter.
-            // Chrome can drop child backdrop-filter when an ancestor fades/transforms.
+            // Fade the hero text card out when its bottom scrolls past the viewport.
+            // Use window.innerHeight so timing works on all screen sizes.
             const heroCard = document.querySelector('.hero-card');
             function syncHeroFade() {
                 if (!heroCard) return;
-                const p = Math.min(1, Math.max(0, window.scrollY / 360));
+                const vh = window.innerHeight;
+                const rect = heroCard.getBoundingClientRect();
+                // Fade starts when card bottom reaches 15% from viewport top.
+                // Fade completes one card-height above that point.
+                const triggerY = vh * 0.15;
+                const travelY = rect.height + triggerY;
+                const p = Math.min(1, Math.max(0, (triggerY - rect.bottom) / travelY));
                 heroCard.style.opacity = String(1 - p);
                 heroCard.style.transform = `translateY(${-56 * p}px) scale(${1 - 0.04 * p})`;
                 heroCard.style.pointerEvents = p > 0.7 ? 'none' : 'auto';
