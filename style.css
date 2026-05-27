@@ -203,3 +203,47 @@ html { scroll-behavior: smooth; }
 @keyframes charFadeUp {
   to { opacity: 1; transform: translateY(0) rotateX(0); }
 }
+
+/* ── Small screen responsive type ── */
+
+/* All cards: minimum width so they don't shrink below 260px on tiny screens */
+.glass-card,
+.frosted-panel,
+.hero-card,
+#contact .glass-card {
+  min-width: 260px;
+}
+
+/* < 400px: fonts down one step */
+@media (max-width: 400px) {
+  .clamp-xl { font-size: clamp(1.7rem, 4vw + 0.5rem, 2.8rem); }
+  .clamp-lg { font-size: clamp(1.2rem, 2.5vw + 0.5rem, 2rem); }
+  .hero-card { width: 100%; padding: 1.2rem; }
+  #contact .glass-card { padding: 1.2rem; }
+
+  .text-headline-xl { font-size: 36px !important; }
+  .text-headline-lg,
+  .text-headline-lg-mobile { font-size: 22px !important; }
+  .text-headline-md { font-size: 19px !important; }
+  .text-body-lg { font-size: 16px !important; }
+  .text-body-md { font-size: 14px !important; }
+  .text-label-caps { font-size: 11px !important; }
+  .text-label-sm { font-size: 11px !important; }
+}
+
+/* < 300px: fonts down two steps */
+@media (max-width: 300px) {
+  .clamp-xl { font-size: clamp(1.3rem, 3vw + 0.5rem, 1.8rem); }
+  .clamp-lg { font-size: clamp(1rem, 2vw + 0.5rem, 1.3rem); }
+  .hero-card { width: 100%; padding: 0.8rem; }
+  #contact .glass-card { padding: 0.8rem; }
+
+  .text-headline-xl { font-size: 26px !important; }
+  .text-headline-lg,
+  .text-headline-lg-mobile { font-size: 18px !important; }
+  .text-headline-md { font-size: 16px !important; }
+  .text-body-lg { font-size: 14px !important; }
+  .text-body-md { font-size: 13px !important; }
+  .text-label-caps { font-size: 10px !important; }
+  .text-label-sm { font-size: 10px !important; }
+}
