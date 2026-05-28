@@ -1,371 +1,128 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
-import heroVideo from "../assets/hero-org.mp4";
+import HomePage from "./pages/HomePage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
 
-const serviceCards = [
-  { key: "infrastructure", icon: "bolt", mode: "corridor" },
-  { key: "silviculture", icon: "forest", mode: "thinning", delay: "delay-100" },
-  { key: "risk", icon: "warning", mode: "hazard" },
-  { key: "regeneration", icon: "potted_plant", mode: "planting", delay: "delay-100" },
-  { key: "clearing", icon: "grass", mode: "thinning" },
-  { key: "cutting", icon: "carpenter", mode: "hazard", delay: "delay-100" },
-];
-
-const regions = ["Sweden", "Finland", "Estonia"];
-
-function usePageEffects(language) {
-  useEffect(() => {
-    let removeScrollFade = null;
-    let removeReveal = null;
-    let removeNavbar = null;
-    let fadeTimer = null;
-
-    const init = () => {
-      if (window.Splitting) {
-        window.Splitting({ target: "[data-splitting]", by: "chars" });
-      }
-
-      if (window.gsap && window.ScrollTrigger) {
-        window.gsap.registerPlugin(window.ScrollTrigger);
-      }
-
-      const heroCard = document.querySelector(".hero-card");
-      const syncHeroFade = () => {
-        if (!heroCard) return;
-        const vh = window.innerHeight;
-        const rect = heroCard.getBoundingClientRect();
-        const triggerY = vh * 0.15;
-        const travelY = rect.height + triggerY;
-        const p = Math.min(1, Math.max(0, (triggerY - rect.bottom) / travelY));
-        heroCard.style.opacity = String(1 - p);
-        heroCard.style.transform = `translateY(${-56 * p}px) scale(${1 - 0.04 * p})`;
-        heroCard.style.pointerEvents = p > 0.7 ? "none" : "auto";
-      };
-      window.addEventListener("scroll", syncHeroFade, { passive: true });
-      fadeTimer = window.setTimeout(() => {
-        heroCard?.classList.remove("animate-fade-up");
-        syncHeroFade();
-      }, 1100);
-      syncHeroFade();
-      removeScrollFade = () => window.removeEventListener("scroll", syncHeroFade);
-
-      const reveals = document.querySelectorAll(".reveal");
-      const checkReveal = () => {
-        const windowHeight = window.innerHeight;
-        reveals.forEach((reveal) => {
-          const revealTop = reveal.getBoundingClientRect().top;
-          if (revealTop < windowHeight - 80) {
-            reveal.classList.add("active");
-          }
-        });
-      };
-      window.addEventListener("scroll", checkReveal, { passive: true });
-      checkReveal();
-      removeReveal = () => window.removeEventListener("scroll", checkReveal);
-
-      const navbar = document.getElementById("navbar");
-      const syncNavbar = () => {
-        if (!navbar) return;
-        if (window.scrollY > 40) {
-          navbar.classList.add(
-            "bg-surface-container-lowest/90",
-            "border-b",
-            "border-surface-container-highest",
-          );
-        } else {
-          navbar.classList.remove(
-            "bg-surface-container-lowest/90",
-            "border-b",
-            "border-surface-container-highest",
-          );
-        }
-      };
-      window.addEventListener("scroll", syncNavbar, { passive: true });
-      syncNavbar();
-      removeNavbar = () => window.removeEventListener("scroll", syncNavbar);
-    };
-
-    const timer = window.setTimeout(init, 0);
-
-    return () => {
-      window.clearTimeout(timer);
-      if (fadeTimer) window.clearTimeout(fadeTimer);
-      removeScrollFade?.();
-      removeReveal?.();
-      removeNavbar?.();
-    };
-  }, [language]);
+function getRoute() {
+  const hash = window.location.hash.replace("#", "") || "/";
+  return hash;
 }
 
-export default function App() {
-  const { t, i18n } = useTranslation();
+function Navbar({ route, navigate }) {
+  const { t } = useTranslation();
+  const isHome = route === "/";
 
-  usePageEffects(i18n.resolvedLanguage);
+  useEffect(() => {
+    const navbar = document.getElementById("navbar");
+    const syncNavbar = () => {
+      if (!navbar) return;
+      if (window.scrollY > 40) {
+        navbar.classList.add("bg-surface-container-lowest/90", "border-b", "border-surface-container-highest");
+      } else {
+        navbar.classList.remove("bg-surface-container-lowest/90", "border-b", "border-surface-container-highest");
+      }
+    };
+    window.addEventListener("scroll", syncNavbar, { passive: true });
+    syncNavbar();
+    return () => window.removeEventListener("scroll", syncNavbar);
+  }, []);
 
   return (
-    <>
-      <header className="fixed top-0 w-full z-50 glass-panel transition-all duration-300" id="navbar">
-        <div className="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-5">
-          <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-tertiary text-2xl animate-pulse">radar</span>
-            <span className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase tracking-widest font-bold">
-              Iskaro AB
-            </span>
-          </div>
-          <nav className="hidden lg:flex items-center gap-7 font-label-caps text-label-caps text-on-surface-variant">
-            <a className="hover:text-tertiary transition-colors" href="#services">
-              {t("nav.services")}
-            </a>
-            <a className="hover:text-tertiary transition-colors" href="#approach">
-              {t("nav.approach")}
-            </a>
-            <a className="hover:text-tertiary transition-colors" href="#contact">
-              {t("nav.contact")}
-            </a>
-          </nav>
-          <div className="flex items-center gap-4">
-            <LanguageSwitcher />
-            <a
-              href="mailto:info.holtor@gmail.com"
-              className="top-quote-link hidden sm:inline-flex md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-5 md:px-10 py-3 md:py-4 rounded-lg md:rounded-xl font-label-caps text-label-caps whitespace-nowrap hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300"
-            >
-              {t("cta.quote")}
-            </a>
-          </div>
+    <header className="fixed top-0 w-full z-50 glass-panel transition-all duration-300" id="navbar">
+      <div className="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-5">
+        <a href="#" onClick={(e) => { e.preventDefault(); navigate("/"); }} className="flex items-center gap-3">
+          <span className="material-symbols-outlined text-tertiary text-2xl animate-pulse">radar</span>
+          <span className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase tracking-widest font-bold">Iskaro AB</span>
+        </a>
+        <nav className="hidden lg:flex items-center gap-7 font-label-caps text-label-caps text-on-surface-variant">
+          {isHome && (
+            <>
+              <a className="hover:text-tertiary transition-colors" href="#services">{t("nav.services")}</a>
+              <a className="hover:text-tertiary transition-colors" href="#approach">{t("nav.approach")}</a>
+            </>
+          )}
+          <a className="hover:text-tertiary transition-colors" href="#/about" onClick={(e) => { e.preventDefault(); navigate("/about"); }}>{t("nav.about")}</a>
+          {isHome && (
+            <a className="hover:text-tertiary transition-colors" href="#contact">{t("nav.contact")}</a>
+          )}
+        </nav>
+        <div className="flex items-center gap-4">
+          <LanguageSwitcher />
+          <a href="mailto:info.holtor@gmail.com"
+             className="top-quote-link hidden sm:inline-flex md:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-5 md:px-10 py-3 md:py-4 rounded-lg md:rounded-xl font-label-caps text-label-caps whitespace-nowrap hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300"
+          >{t("cta.quote")}</a>
         </div>
-      </header>
+      </div>
+    </header>
+  );
+}
 
-      <div id="smooth-wrapper" className="relative z-10">
-        <div id="smooth-content">
-          <section className="min-h-screen relative overflow-hidden flex flex-col justify-center pt-32" id="hero-section">
-            <video
-              autoPlay
-              aria-hidden="true"
-              className="fixed inset-0 w-full h-full object-cover z-0 opacity-100"
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              src={heroVideo}
-            />
-            <div className="fixed inset-0 video-overlay z-20" />
-            <div id="hero-copy" className="relative z-30 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-16">
-              <div className="hero-card max-w-3xl ml-auto md:ml-auto space-y-6 p-7 md:p-12 rounded-xl animate-fade-up">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="h-px w-8 bg-tertiary" />
-                  <span className="font-label-caps text-label-caps text-tertiary tracking-widest">
-                    {t("hero.kicker")}
-                  </span>
-                </div>
-                <h1 className="font-headline-xl text-on-surface leading-tight clamp-xl split-text font-bold" data-splitting>
-                  {t("hero.title")}
-                </h1>
-                <div className="pt-4 flex flex-col sm:flex-row gap-4" />
-              </div>
+function Footer({ navigate }) {
+  const { t } = useTranslation();
+
+  return (
+    <footer className="site-footer w-full glass-section bg-surface-container-lowest border-t border-surface-container-highest">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
+        <div className="md:col-span-4 lg:col-span-5">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="material-symbols-outlined text-tertiary text-2xl">precision_manufacturing</span>
+            <span className="font-headline-md text-headline-md text-on-surface uppercase tracking-widest font-bold">Iskaro AB</span>
+          </div>
+          <p className="font-body-md text-body-md text-on-surface-variant max-w-sm">{t("footer.copyright")}</p>
+        </div>
+        <div className="md:col-span-8 lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h4 className="font-label-caps text-label-caps text-on-surface mb-6">{t("footer.solutions")}</h4>
+            <nav className="flex flex-col gap-4">
+              <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/#services">{t("services.infrastructure.title")}</a>
+              <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/#services">{t("services.silviculture.title")}</a>
+              <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/#services">{t("services.risk.title")}</a>
+            </nav>
+          </div>
+          <div>
+            <h4 className="font-label-caps text-label-caps text-on-surface mb-6">{t("footer.company")}</h4>
+            <nav className="flex flex-col gap-4">
+              <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }}>{t("nav.home")}</a>
+              <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#/about" onClick={(e) => { e.preventDefault(); navigate("/about"); }}>{t("nav.about")}</a>
+              <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="https://iskaro.net/">Iskaro AB</a>
+            </nav>
+          </div>
+          <div className="col-span-2 md:col-span-1">
+            <h4 className="font-label-caps text-label-caps text-on-surface mb-6">Status</h4>
+            <div className="flex items-center gap-2 bg-surface-container px-4 py-2 rounded border border-surface-container-highest inline-flex">
+              <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse" />
+              <span className="font-label-sm text-label-sm text-on-surface-variant">{t("footer.status")}</span>
             </div>
-          </section>
-
-          <div className="section-transition" aria-hidden="true" />
-
-          <div className="relative z-20 living-page-bg glass-section bg-surface section-edge-fade">
-            <section
-              id="services"
-              className="glass-section pt-32 pb-24 px-margin-mobile md:px-margin-desktop rounded-t-[2rem] shadow-[0_-20px_50px_rgba(0,0,0,0.6)] border-t border-white/5 -mt-8 bg-surface"
-            >
-              <div className="max-w-container-max mx-auto">
-                <div className="mb-16 reveal max-w-3xl">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="font-label-caps text-label-caps text-tertiary tracking-widest">
-                      {t("hero.coreCapabilities")}
-                    </span>
-                    <span className="h-px w-16 bg-surface-container-highest" />
-                  </div>
-                  <h2 className="clamp-lg font-bold text-on-surface mb-6">{t("services.title")}</h2>
-                  <p className="font-body-md text-body-md text-on-surface-variant text-lg leading-relaxed">
-                    {t("services.description")}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                  {serviceCards.map((service) => (
-                    <div
-                      key={service.key}
-                      className={`glass-card rounded-lg p-8 hover:border-tertiary/50 transition-all duration-500 group reveal ${service.delay || ""}`}
-                      data-mode={service.mode}
-                    >
-                      <div className="flex justify-between items-start mb-6">
-                        <span className="material-symbols-outlined text-4xl text-tertiary transition-transform duration-500 group-hover:scale-110">
-                          {service.icon}
-                        </span>
-                        <span className="font-label-caps text-on-surface-variant">
-                          {t(`services.${service.key}.label`)}
-                        </span>
-                      </div>
-                      <h3 className="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">
-                        {t(`services.${service.key}.title`)}
-                      </h3>
-                      <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                        {t(`services.${service.key}.body`)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            <section id="approach" className="glass-section pb-24 px-margin-mobile md:px-margin-desktop">
-              <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-                <div className="frosted-panel lg:col-span-5 bg-surface-container rounded-xl p-10 flex flex-col justify-center border border-surface-container-highest reveal">
-                  <span className="material-symbols-outlined text-5xl text-tertiary mb-8">shield_with_heart</span>
-                  <h2 className="clamp-lg font-bold text-on-surface mb-6">{t("approach.title")}</h2>
-                  <p className="font-body-lg text-body-lg text-on-surface-variant mb-6">{t("approach.body")}</p>
-                  <div className="mt-auto pt-8 border-t border-surface-container-highest">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-surface-bright flex items-center justify-center">
-                        <span className="material-symbols-outlined text-primary">gavel</span>
-                      </div>
-                      <div>
-                        <div className="font-label-caps text-label-caps text-tertiary">{t("approach.founded")}</div>
-                        <div className="font-label-sm text-label-sm text-on-surface-variant">{t("approach.serving")}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-7 grid grid-rows-2 gap-6 md:gap-8">
-                  <div className="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-100 flex flex-col justify-center">
-                    <h3 className="font-headline-md text-headline-md text-on-surface mb-4">{t("approach.subtitle")}</h3>
-                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                      {t("approach.description")}
-                    </p>
-                    <div className="mt-6 flex gap-3">
-                      {regions.map((region) => (
-                        <span key={region} className="px-3 py-1.5 bg-surface-bright rounded text-xs font-semibold text-primary">
-                          {region}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                    <div className="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-200">
-                      <span className="material-symbols-outlined text-3xl text-tertiary mb-4">analytics</span>
-                      <h4 className="font-label-caps text-label-caps text-on-surface mb-2">{t("approach.valueTitle")}</h4>
-                      <p className="font-body-md text-body-md text-on-surface-variant">{t("approach.valueBody")}</p>
-                    </div>
-                    <div className="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-300">
-                      <span className="material-symbols-outlined text-3xl text-tertiary mb-4">health_and_safety</span>
-                      <h4 className="font-label-caps text-label-caps text-on-surface mb-2">{t("approach.riskTitle")}</h4>
-                      <p className="font-body-md text-body-md text-on-surface-variant">{t("approach.riskBody")}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section
-              id="contact"
-              className="glass-section py-20 md:py-24 px-margin-mobile md:px-margin-desktop overflow-hidden flex items-center justify-center text-center relative"
-            >
-              <div className="contact-cta glass-card rounded-xl p-6 sm:p-8 md:p-9 max-w-xl w-full relative z-10">
-                <div className="relative z-10 max-w-xl mx-auto space-y-6 reveal">
-                  <h2 className="clamp-lg font-bold text-on-surface">{t("contact.title")}</h2>
-                  <p className="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">{t("contact.body")}</p>
-                  <div className="flex flex-col md:flex-row items-center justify-center gap-4 pt-1">
-                    <a
-                      href="mailto:info.holtor@gmail.com"
-                      className="contact-email-link w-full sm:w-auto bg-[rgba(255,255,255,0.12)] backdrop-blur-xl border border-white/20 text-on-surface px-7 py-3.5 rounded-lg font-label-caps text-label-caps hover:bg-[rgba(77,224,130,0.20)] hover:border-[#4de080]/50 transition-all duration-300"
-                    >
-                      {t("cta.project")}
-                    </a>
-                  </div>
-
-                  <div className="contact-people flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-5 md:gap-8 mt-8 pt-8 border-t border-surface-container-highest">
-                    <div className="flex items-center gap-3 text-left group cursor-pointer min-w-0">
-                      <div className="contact-icon w-10 h-10 rounded bg-surface-container-low flex shrink-0 items-center justify-center border border-surface-container-highest group-hover:border-tertiary transition-colors">
-                        <span className="material-symbols-outlined text-tertiary">support_agent</span>
-                      </div>
-                      <div className="min-w-0">
-                        <div className="font-label-caps text-label-caps text-on-surface-variant mb-1">
-                          {t("contact.logistics")} (Andrus)
-                        </div>
-                        <a className="font-body-lg text-body-lg text-on-surface group-hover:text-tertiary transition-colors" href="tel:+37253904998">
-                          +372 5390 4998
-                        </a>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 text-left group cursor-pointer min-w-0">
-                      <div className="contact-icon w-10 h-10 rounded bg-surface-container-low flex shrink-0 items-center justify-center border border-surface-container-highest group-hover:border-tertiary transition-colors">
-                        <span className="material-symbols-outlined text-tertiary">engineering</span>
-                      </div>
-                      <div className="min-w-0">
-                        <div className="font-label-caps text-label-caps text-on-surface-variant mb-1">
-                          {t("contact.operations")} (Maksim)
-                        </div>
-                        <a className="font-body-lg text-body-lg text-on-surface group-hover:text-tertiary transition-colors" href="tel:+3725549366">
-                          +372 554 9366
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <footer className="site-footer w-full glass-section bg-surface-container-lowest border-t border-surface-container-highest">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-12 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
-                <div className="md:col-span-4 lg:col-span-5">
-                  <div className="flex items-center gap-2 mb-6">
-                    <span className="material-symbols-outlined text-tertiary text-2xl">precision_manufacturing</span>
-                    <span className="font-headline-md text-headline-md text-on-surface uppercase tracking-widest font-bold">
-                      Iskaro AB
-                    </span>
-                  </div>
-                  <p className="font-body-md text-body-md text-on-surface-variant max-w-sm">{t("footer.copyright")}</p>
-                </div>
-                <div className="md:col-span-8 lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
-                  <div>
-                    <h4 className="font-label-caps text-label-caps text-on-surface mb-6">{t("footer.solutions")}</h4>
-                    <nav className="flex flex-col gap-4">
-                      <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#services">
-                        {t("services.infrastructure.title")}
-                      </a>
-                      <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#services">
-                        {t("services.silviculture.title")}
-                      </a>
-                      <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#services">
-                        {t("services.risk.title")}
-                      </a>
-                    </nav>
-                  </div>
-                  <div>
-                    <h4 className="font-label-caps text-label-caps text-on-surface mb-6">{t("footer.company")}</h4>
-                    <nav className="flex flex-col gap-4">
-                      <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#approach">
-                        {t("nav.approach")}
-                      </a>
-                      <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#contact">
-                        {t("nav.contact")}
-                      </a>
-                      <a className="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="https://iskaro.net/">
-                        Iskaro AB
-                      </a>
-                    </nav>
-                  </div>
-                  <div className="col-span-2 md:col-span-1">
-                    <h4 className="font-label-caps text-label-caps text-on-surface mb-6">Status</h4>
-                    <div className="flex items-center gap-2 bg-surface-container px-4 py-2 rounded border border-surface-container-highest inline-flex">
-                      <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse" />
-                      <span className="font-label-sm text-label-sm text-on-surface-variant">{t("footer.status")}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </footer>
           </div>
         </div>
       </div>
+    </footer>
+  );
+}
+
+export default function App() {
+  const [route, setRoute] = useState(() => getRoute());
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setRoute(getRoute());
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  const navigate = (path) => {
+    window.location.hash = path;
+  };
+
+  const isHome = route === "/";
+
+  return (
+    <>
+      <Navbar route={route} navigate={navigate} />
+      {isHome ? <HomePage /> : <AboutPage navigate={navigate} />}
+      {isHome && <Footer route={route} navigate={navigate} />}
     </>
   );
 }
