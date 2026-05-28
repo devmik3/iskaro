@@ -322,6 +322,27 @@ html { scroll-behavior: smooth; }
   to { opacity: 1; transform: translateY(0) rotateX(0); }
 }
 
+/* ── Mobile hamburger menu ── */
+.mobile-menu-panel {
+  width: min(100%, 28rem);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(145deg, rgba(8, 22, 12, 0.90), rgba(10, 16, 12, 0.90));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px) saturate(1.25);
+  -webkit-backdrop-filter: blur(20px) saturate(1.25);
+}
+
+body.mobile-menu-open #smooth-wrapper,
+body.mobile-menu-open #about,
+body.mobile-menu-open .site-footer {
+  filter: blur(8px);
+  transition: filter 0.3s ease;
+  pointer-events: none;
+}
+
 /* ── Small screen responsive type ── */
 
 /* All cards: minimum width so they don't shrink below 260px on tiny screens */

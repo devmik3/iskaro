@@ -31,6 +31,25 @@ function Navbar({ route, navigate }) {
 
   const closeMenu = () => setMenuOpen(false);
 
+  // Toggle body class for page blur behind hamburger
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.classList.remove("mobile-menu-open");
+    }
+    return () => document.body.classList.remove("mobile-menu-open");
+  }, [menuOpen]);
+
+  const scrollToSection = (id) => {
+    navigate("/");
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+    closeMenu();
+  };
+
   return (
     <header className="fixed top-0 w-full z-50 glass-panel transition-all duration-300" id="navbar">
       <div className="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-5">
@@ -76,22 +95,27 @@ function Navbar({ route, navigate }) {
 
       {/* Mobile menu overlay */}
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[72px] z-40" style={{ background: "linear-gradient(180deg, rgba(17,18,19,0.98) 0%, rgba(12,14,13,0.98) 100%)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-          <nav className="flex flex-col items-center gap-6 pt-12 font-label-caps text-label-caps text-on-surface-variant">
-            {isHome && (
-              <>
-                <a className="hover:text-tertiary transition-colors text-lg" href="#services" onClick={closeMenu}>{t("nav.services")}</a>
-                <a className="hover:text-tertiary transition-colors text-lg" href="#approach" onClick={closeMenu}>{t("nav.approach")}</a>
-              </>
-            )}
-            <a className="hover:text-tertiary transition-colors text-lg" href="#/about" onClick={(e) => { e.preventDefault(); navigate("/about"); closeMenu(); }}>{t("nav.about")}</a>
-            {isHome && (
-              <a className="hover:text-tertiary transition-colors text-lg" href="#contact" onClick={closeMenu}>{t("nav.contact")}</a>
-            )}
-            <div className="pt-6 border-t border-surface-container-highest w-40 flex justify-center">
-              <LanguageSwitcher />
-            </div>
-          </nav>
+        <div className="lg:hidden fixed inset-0 top-[72px] z-40 flex items-start justify-center pt-8 px-4" style={{ backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)" }}>
+          <div className="mobile-menu-panel">
+            <nav className="flex flex-col items-center gap-5 font-label-caps text-label-caps">
+              {isHome && (
+                <>
+                  <a className="hover:text-tertiary transition-colors text-lg" href="#services" onClick={(e) => { e.preventDefault(); scrollToSection("services"); }}>{t("nav.services")}</a>
+                  <a className="hover:text-tertiary transition-colors text-lg" href="#approach" onClick={(e) => { e.preventDefault(); scrollToSection("approach"); }}>{t("nav.approach")}</a>
+                </>
+              )}
+              {!isHome && (
+                <a className="hover:text-tertiary transition-colors text-lg" href="/" onClick={(e) => { e.preventDefault(); navigate("/"); closeMenu(); }}>{t("nav.home")}</a>
+              )}
+              <a className="hover:text-tertiary transition-colors text-lg" href="#/about" onClick={(e) => { e.preventDefault(); navigate("/about"); closeMenu(); }}>{t("nav.about")}</a>
+              {(isHome) && (
+                <a className="hover:text-tertiary transition-colors text-lg" href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}>{t("nav.contact")}</a>
+              )}
+              <div className="pt-5 border-t border-white/10 w-full flex justify-center">
+                <LanguageSwitcher />
+              </div>
+            </nav>
+          </div>
         </div>
       )}
     </header>
