@@ -2,28 +2,35 @@ import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import * as THREE from "three";
 
+import bg0 from "../../assets/images/bg_0.jpg";
 import bg1 from "../../assets/images/bg_1.jpg";
 import bg2 from "../../assets/images/bg_2.jpg";
 import bg3 from "../../assets/images/bg_3.jpg";
 import bg4 from "../../assets/images/bg_4.jpg";
 import bg5 from "../../assets/images/bg_5.jpg";
+import bg6 from "../../assets/images/bg_6.jpg";
+import bg7 from "../../assets/images/bg_7.jpg";
 
 import worker1 from "../../assets/images/is_1.jpg";
 import worker2 from "../../assets/images/is_2.jpg";
 import worker3 from "../../assets/images/is_3.jpg";
 import worker4 from "../../assets/images/is_4.jpg";
 import worker5 from "../../assets/images/is_5.jpg";
+import worker6 from "../../assets/images/is_6.jpg";
 
-const bgImgs = [bg1, bg2, bg3, bg4, bg5];
-const workerImgs = [worker1, worker2, worker3, worker4, worker5];
-const n = 5;
+const bgImgs = [bg0, bg1, bg2, bg3, bg4, bg5, bg6, bg7];
+const workerImgs = [worker1, worker1, worker2, worker3, worker4, worker5, worker6, worker5];
+const n = 8;
 
 const slideFX = [
+  { zS: 1.0, zE: 1.0, oS: 0, oE: 0, mI: 1.0 },
   { zS: 2.0, zE: 1.0, oS: 0, oE: 0, mI: 1.0 },
   { zS: 1.0, zE: 2.0, oS: 0, oE: 0.3, mI: 1.0 },
   { zS: 2.0, zE: 2.0, oS: 0, oE: 0, mI: 0.5 },
   { zS: 2.0, zE: 0.5, oS: 0, oE: 0, mI: 2.0 },
   { zS: 1.0, zE: 1.0, oS: 0, oE: 0, mI: 1.0 },
+  { zS: 1.0, zE: 1.0, oS: 0, oE: 0, mI: 1.0 },
+  { zS: 1.0, zE: 1.0, oS: 0, oE: 0, mI: 0.5 },
 ];
 
 const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
@@ -35,6 +42,7 @@ const fragmentShader = `
   uniform float uZoom;
   uniform vec2  uOffset;
   uniform float uMovement;
+  uniform float uBrightness;
   varying vec2 vUv;
   void main() {
     vec2 uv = vUv;
@@ -53,6 +61,7 @@ const fragmentShader = `
     color.rgb *= vig;
     color.a = 1.0 - uProgress;
     color.a *= edgeFade;
+    color.rgb *= uBrightness;
     gl_FragColor = color;
   }
 `;
@@ -66,6 +75,9 @@ export default function About() {
   const cardsContainerRef = useRef(null);
 
   useEffect(() => {
+    // Scroll to top on mount (prevents browser scroll restoration)
+    window.scrollTo(0, 0);
+
     const section = sectionRef.current;
     const canvas = canvasRef.current;
     const textContainer = textContainerRef.current;
@@ -94,6 +106,7 @@ export default function About() {
         uZoom: { value: fx.zS },
         uOffset: { value: new THREE.Vector2(fx.oS, 0) },
         uMovement: { value: fx.mI },
+        uBrightness: { value: i === 0 ? 1.5 : 1.0 },
       };
       const material = new THREE.ShaderMaterial({
         uniforms: u, vertexShader, fragmentShader,
@@ -120,7 +133,7 @@ export default function About() {
     window.addEventListener("resize", handleResize);
 
     // ── Scroll ──
-    const textEls = textContainer.querySelectorAll(".about-text-item");
+    const textEls = section.querySelectorAll(".about-text-item");
     const cardEls = cardsContainer.querySelectorAll(".about-worker-card");
     const dots = section.querySelectorAll(".about-dot");
 
@@ -128,46 +141,52 @@ export default function About() {
       const rect = section.getBoundingClientRect();
       const sectionHeight = rect.height;
       const viewHeight = window.innerHeight;
-      const scrollRange = sectionHeight - viewHeight;
-      const rawProgress = Math.max(0, (-rect.top) / scrollRange);
+      const scrollRange = Math.max(1, sectionHeight - viewHeight);
+
+      // Clamp both ends so slide 7 remains stable at the bottom of the section.
+      const clamp01 = (value) => Math.max(0, Math.min(1, value));
+      const rawProgress = clamp01((-rect.top) / scrollRange);
       const progress = rawProgress * (n - 1);
 
-      // Fade out canvas when past the About section (so footer shows)
-      const bgFade = Math.max(0, Math.min(1, (1.1 - rawProgress) / 0.2));
-      if (bgRef.current) bgRef.current.style.opacity = String(bgFade);
+      const getSlideOpacity = (i) => {
+        if (i === n - 1 && progress >= i) return 1;
+
+        const dist = Math.abs(progress - i);
+        if (dist < 0.1) return 1;
+        if (dist < 0.55) return 1 - (dist - 0.1) / 0.45;
+        return 0;
+      };
 
       let bestIndex = 0, bestOpacity = 0;
 
-      planes.forEach(({ mesh, u, fx }, i) => {
+      planes.forEach(({ u, fx }, i) => {
         const dist = Math.abs(progress - i);
         let p;
-        if (dist < 0.1) p = 0;
+
+        if (i === n - 1 && progress >= i) p = 0;
+        else if (dist < 0.1) p = 0;
         else if (dist < 0.55) p = (dist - 0.1) / 0.45;
         else p = 1;
-        p = Math.max(0, Math.min(1, p));
+
+        p = clamp01(p);
         u.uProgress.value = p;
         u.uZoom.value = fx.zS + (fx.zE - fx.zS) * p;
         u.uOffset.value.set(fx.oS + (fx.oE - fx.oS) * p, 0);
+
         const opacity = 1 - p;
         if (opacity > bestOpacity) { bestOpacity = opacity; bestIndex = i; }
       });
 
       textEls.forEach((el, i) => {
-        const dist = Math.abs(progress - i);
-        let opacity;
-        if (dist < 0.1) opacity = 1;
-        else if (dist < 0.55) opacity = 1 - (dist - 0.1) / 0.45;
-        else opacity = 0;
-        el.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+        const opacity = clamp01(getSlideOpacity(i));
+        el.style.opacity = String(opacity);
+        el.style.zIndex = String(Math.round(opacity * 100));
+        el.style.pointerEvents = opacity > 0.05 ? "auto" : "none";
       });
 
       cardEls.forEach((el, i) => {
-        const dist = Math.abs(progress - i);
-        let opacity;
-        if (dist < 0.1) opacity = 1;
-        else if (dist < 0.55) opacity = 1 - (dist - 0.1) / 0.45;
-        else opacity = 0;
-        el.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+        const opacity = clamp01(getSlideOpacity(i));
+        el.style.opacity = String(opacity);
         el.style.zIndex = String(Math.round(opacity * 100));
       });
 
@@ -204,42 +223,70 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative bg-surface" style={{ height: "500vh" }}>
+    <section ref={sectionRef} id="about" className="about-scroll-section relative bg-surface" style={{ height: "800vh", minHeight: "800svh" }}>
       {/* Fixed bg wrapper — fades out when past the section so footer is visible */}
       <div ref={bgRef} className="fixed inset-0 pointer-events-none" style={{ zIndex: 1 }}>
         <canvas ref={canvasRef} className="w-full h-full" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(17,18,19,0.55) 0%, rgba(17,18,19,0.30) 50%, rgba(17,18,19,0.55) 100%)" }} />
+        <div className="absolute inset-0 about-bg-overlay" />
       </div>
-      <div className="sticky top-0 w-full h-screen flex items-center px-margin-mobile md:px-margin-desktop" style={{ zIndex: 3 }}>
-        <div className="max-w-container-max mx-auto w-full">
-          <div className="flex items-center gap-2 mb-6 md:mb-8">
-            <span className="h-px w-8 bg-tertiary" />
-            <span className="font-label-caps text-label-caps text-tertiary tracking-widest">{t("about.label")}</span>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12">
-            <div ref={textContainerRef} className="relative" style={{ height: "50vh" }}>
-              {Array.from({ length: n }, (_, i) => (
-                <div key={i} className="about-text-item absolute inset-0 flex flex-col justify-center" style={{ opacity: i === 0 ? 1 : 0 }}>
-                  <h3 className="clamp-lg font-bold text-white mb-4 md:mb-6 drop-shadow-lg">{t(`about.slide${i + 1}_heading`)}</h3>
-                  <p className="font-body-lg text-body-lg text-white/80 leading-relaxed max-w-lg drop-shadow-md">{t(`about.slide${i + 1}_body`)}</p>
-                </div>
-              ))}
+
+      <div className="about-fixed-stage fixed top-0 w-full h-screen flex flex-col justify-center px-margin-mobile md:px-margin-desktop" style={{ zIndex: 3 }}>
+        <div className="about-stage-inner max-w-container-max mx-auto w-full relative">
+          {/* Slide 0 — hero intro (full width, centered) */}
+          <div className="about-text-item about-hero-slide absolute inset-0 flex flex-col items-center justify-center" style={{ opacity: 1 }}>
+            <div className="about-hero-card">
+              <h2
+                className="clamp-lg font-bold text-white text-center drop-shadow-lg leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: t("about.slide0_heading") }}
+              />
+              <p className="clamp-lg font-bold text-tertiary text-center mt-4 drop-shadow-lg">{t("about.promise_subtitle")}</p>
             </div>
-            <div ref={cardsContainerRef} className="relative flex items-center justify-center" style={{ height: "50vh" }}>
-              {Array.from({ length: n }, (_, i) => (
-                <div key={i} className="about-worker-card absolute inset-0 flex items-center justify-center" style={{ opacity: i === 0 ? 1 : 0, zIndex: i === 0 ? 100 : 0 }}>
-                  <div className="glass-card rounded-2xl overflow-hidden shadow-2xl w-full max-w-sm md:max-w-md">
-                    <img src={workerImgs[i]} alt={t(`about.slide${i + 1}_heading`)} className="w-full h-48 md:h-56 object-cover" />
-                    <div className="p-4 md:p-5">
-                      <h4 className="font-bold text-on-surface mb-1">{t(`about.slide${i + 1}_heading`)}</h4>
-                      <p className="font-body-md text-body-md text-on-surface-variant line-clamp-2">{t(`about.slide${i + 1}_body`)}</p>
-                    </div>
+          </div>
+
+          <div className="about-layout">
+            <div ref={textContainerRef} className="about-copy-column relative">
+              {[1,2,3,4,5,6].map((i) => (
+                <div key={i} className="about-text-item about-slide-copy-wrap absolute inset-0 flex flex-col justify-center" style={{ opacity: 0 }}>
+                  <div className="about-copy-card">
+                    <h3 className="clamp-lg font-bold text-white mb-4 md:mb-6 drop-shadow-lg">{t(`about.slide${i}_heading`)}</h3>
+                    <p className="font-body-lg text-body-lg text-white/85 leading-relaxed drop-shadow-md">{t(`about.slide${i}_body`)}</p>
                   </div>
                 </div>
               ))}
+
+              {/* Slide 7 — closing glass card */}
+              <div className="about-text-item about-final-slide absolute inset-0 flex items-center justify-center" style={{ opacity: 0 }}>
+                <div className="about-final-card">
+                  <p
+                    className="clamp-lg font-bold text-white text-center drop-shadow-lg leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: t("about.slide7_text") }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div ref={cardsContainerRef} className="about-media-column relative flex items-center justify-center">
+              {/* Slide 0 — no image card */}
+              <div className="about-worker-card about-slide-media-wrap absolute inset-0 flex items-center justify-center" style={{ opacity: 1, zIndex: 1 }}>
+                <div />
+              </div>
+
+              {[1,2,3,4,5,6].map((i) => (
+                <div key={i} className="about-worker-card about-slide-media-wrap absolute inset-0 flex items-center justify-center" style={{ opacity: 0, zIndex: 0 }}>
+                  <div className="about-image-card glass-card rounded-2xl overflow-hidden shadow-2xl w-full">
+                    <img src={workerImgs[i]} alt={t(`about.slide${i}_heading`)} className="about-worker-img w-full object-cover" />
+                  </div>
+                </div>
+              ))}
+
+              {/* Slide 7 — no image card */}
+              <div className="about-worker-card about-slide-media-wrap absolute inset-0 flex items-center justify-center" style={{ opacity: 0, zIndex: 0 }}>
+                <div />
+              </div>
             </div>
           </div>
-          <div className="flex justify-center gap-3 mt-6 md:mt-8">
+
+          <div className="about-dots flex justify-center gap-3">
             {Array.from({ length: n }, (_, i) => (
               <span key={i} className="about-dot w-2.5 h-2.5 rounded-full transition-all duration-300" style={{ backgroundColor: i === 0 ? "rgba(77, 224, 130, 0.9)" : "rgba(255, 255, 255, 0.3)", transform: i === 0 ? "scale(1.4)" : "scale(1)" }} />
             ))}

@@ -11,42 +11,48 @@
     "project": "Send Project Details"
   },
   "hero": {
-    "kicker": "ESTONIA • FINLAND • SWEDEN",
+    "kicker": "SWEDEN • FINLAND • BALTIC REGION",
     "title": "Precision forestry work for demanding Nordic terrain.",
     "coreCapabilities": "Core Capabilities"
   },
   "services": {
-    "title": "Services built for field conditions",
-    "description": "A well-managed forest grows stronger, safer and more valuable over time. We provide practical forestry services for landowners, companies and infrastructure projects — with careful planning, reliable fieldwork and respect for the surrounding environment.",
+    "title": "Our Process",
+    "description": "At Iskaro AB, we follow a structured and efficient process to ensure every forestry project is completed safely, professionally, and according to client requirements.",
     "infrastructure": {
-      "label": "01 / INFRASTRUCTURE",
-      "title": "Safe corridors. Reliable access. Fewer risks.",
-      "body": "We clear brush, small trees and hazardous edge trees around power lines and service corridors. Our work helps reduce outage risks, improves access for maintenance teams, and keeps the surrounding area safer for landowners and infrastructure operators."
+      "label": "01 / PROJECT ASSESSMENT",
+      "title": "Project Assessment",
+      "body": "We begin by carefully reviewing the project scope, location, and specific client requirements. This allows us to understand the complexity of the assignment and determine the most efficient approach."
     },
     "silviculture": {
-      "label": "02 / SILVICULTURE",
-      "title": "Give the best trees room to grow.",
-      "body": "Young forest clearing removes weak, damaged or poorly placed trees so the strongest trees can develop better trunks, crowns and root systems. Done at the right time, clearing improves future thinning results and supports a healthier, more valuable forest."
+      "label": "02 / PLANNING AND RESOURCE ALLOCATION",
+      "title": "Planning and Resource Allocation",
+      "body": "Based on the project assessment, we create a clear work plan and allocate the right team size, equipment, and resources. Our flexible workforce allows us to scale operations depending on project demands."
     },
     "risk": {
-      "label": "03 / RISK MANAGEMENT",
-      "title": "Hazardous Tree Removal",
-      "body": "We remove leaning, storm-damaged and structurally unsafe trees near access roads, buildings, utility corridors and working areas with controlled planning and careful execution."
+      "label": "03 / MOBILIZATION",
+      "title": "Mobilization",
+      "body": "Our teams are prepared to mobilize quickly across <b>Sweden</b>, <b>Finland</b>, the <b>Baltic region</b>, and other international locations when required. This includes:<ul style=\"list-style-type: disc; padding-left: 1.25rem; margin-top: 0.5rem;\"><li style=\"margin-bottom: 0.25rem;\">Team deployment based on project size</li><li style=\"margin-bottom: 0.25rem;\">Equipment and tool preparation</li><li style=\"margin-bottom: 0.25rem;\">Travel and accommodation coordination</li><li style=\"margin-bottom: 0.25rem;\">Site access and safety readiness</li><li style=\"margin-bottom: 0.25rem;\">Flexible scaling for urgent forestry work</li></ul>"
     },
     "regeneration": {
-      "label": "04 / REGENERATION",
-      "title": "Forest Planting & Regeneration",
-      "body": "From site preparation to planting support, we help establish young forest stands with practical spacing, species-aware planning and long-term forest health in mind."
+      "label": "04 / PROJECT EXECUTION",
+      "title": "Project Execution",
+      "body": "Using professional brush cutters, chainsaws, and proven forestry methods, our experienced specialists carry out the work efficiently and safely. This includes services such as:<ul style=\"list-style-type: disc; padding-left: 1.25rem; margin-top: 0.5rem;\"><li style=\"margin-bottom: 0.25rem;\">Pre-commercial thinning</li><li style=\"margin-bottom: 0.25rem;\">Planting</li><li style=\"margin-bottom: 0.25rem;\">Vegetation clearing</li><li style=\"margin-bottom: 0.25rem;\">Pre-cutting operations</li><li style=\"margin-bottom: 0.25rem;\">Tree felling</li></ul>"
     },
     "clearing": {
-      "label": "05 / CLEARING",
-      "title": "Brush Clearing",
-      "body": "Open access routes, reclaim overgrown areas and prepare land for maintenance or future work with efficient brush and small-tree clearing."
+      "label": "05 / QUALITY CONTROL",
+      "title": "Quality Control",
+      "body": "Throughout every stage of the project, our supervisors ensure that work meets agreed standards, safety requirements, and client expectations."
     },
     "cutting": {
-      "label": "06 / CUTTING",
-      "title": "Tree Cutting",
-      "body": "Controlled cutting for land management, safety, access and forestry maintenance — planned around terrain, surroundings and project requirements."
+      "label": "06 / COMPLETION AND CLIENT REVIEW",
+      "title": "Completion and Client Review",
+      "body": "Once the project is completed, we conduct a final review to ensure all work has been delivered to specification and to guarantee client satisfaction."
+    },
+    "support": {
+      "label": "07 / ONGOING SUPPORT",
+      "title": "Ongoing Support",
+      "body": "When needed, we continue supporting our clients through additional workforce solutions, including forestry machinery operators and skilled forest workers.",
+      "tagline": "Reliable planning. Skilled execution. Professional results."
     }
   },
   "approach": {
@@ -70,16 +76,22 @@
   "about": {
     "label": "ABOUT US",
     "back": "Back to Home",
-    "slide1_heading": "Our Mission",
-    "slide2_heading": "Our Vision",
-    "slide3_heading": "Our Values",
-    "slide4_heading": "Our Process",
-    "slide5_heading": "Our Promise",
-    "slide1_body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    "slide2_body": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    "slide3_body": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
-    "slide4_body": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
-    "slide5_body": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
+    "promise_intro": "At Iskaro AB, we are committed to delivering reliable, efficient, and high-quality forestry services on every project.",
+    "promise_subtitle": "We promise to provide:",
+    "slide0_heading": "At <span class=\"text-tertiary\">Iskaro AB</span>, we are committed to delivering reliable, efficient, and high-quality forestry services on every project.",
+    "slide1_heading": "1. Professional Expertise",
+    "slide2_heading": "2. Safety First",
+    "slide3_heading": "3. Flexibility",
+    "slide4_heading": "4. Reliability and Responsibility",
+    "slide5_heading": "5. Commitment to Partnership",
+    "slide1_body": "Our teams consist of experienced forestry professionals with the knowledge and practical skills required to deliver outstanding results.",
+    "slide2_body": "We prioritize safe working practices and ensure that all operations are carried out with strict attention to safety standards.",
+    "slide3_body": "We adapt our workforce, resources, and operational capacity to match each project\u2019s specific requirements \u2014 regardless of scale or location.",
+    "slide4_body": "We meet agreed deadlines, maintain clear communication, and take full responsibility for every stage of the project.",
+    "slide5_body": "We build long-term relationships through trust, transparency, and consistent performance.",
+    "slide6_heading": "Quality Results",
+    "slide6_body": "We focus on precision, efficiency, and long-term value, ensuring every project is completed to the highest professional standard.",
+    "slide7_text": "At <span class=\"text-tertiary\">Iskaro AB</span>, our promise is simple:<br/>Expert Forestry Services for Your Needs,<br/>delivered with professionalism, reliability, and results you can depend on."
   },
   "footer": {
     "copyright": "© 2026 Iskaro AB. Modern forestry, clearing and power-line corridor services across Estonia, Finland and Sweden.",

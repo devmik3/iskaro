@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import heroVideo from "../../assets/hero-org.mp4";
+import managerImg from "../../assets/images/manager.jpg";
 
 const serviceCards = [
   { key: "infrastructure", icon: "bolt", mode: "corridor" },
@@ -106,7 +107,7 @@ export default function HomePage() {
     <>
       <div id="smooth-wrapper" className="relative z-10">
         <div id="smooth-content">
-          <section className="min-h-screen relative overflow-hidden flex flex-col justify-center pt-32" id="hero-section">
+          <section className="min-h-[100svh] relative overflow-hidden flex flex-col justify-end sm:justify-center pt-28 pb-10 sm:pt-32 sm:pb-0" id="hero-section">
             <video
               autoPlay
               aria-hidden="true"
@@ -118,8 +119,8 @@ export default function HomePage() {
               src={heroVideo}
             />
             <div className="fixed inset-0 video-overlay z-20" />
-            <div id="hero-copy" className="relative z-30 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-16">
-              <div className="hero-card max-w-3xl ml-auto md:ml-auto space-y-6 p-7 md:p-12 rounded-xl animate-fade-up">
+            <div id="hero-copy" className="relative z-30 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-0 sm:mt-16">
+              <div className="hero-card max-w-3xl ml-auto space-y-4 sm:space-y-6 p-5 sm:p-7 md:p-12 rounded-xl animate-fade-up">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="h-px w-8 bg-tertiary" />
                   <span className="font-label-caps text-label-caps text-tertiary tracking-widest">
@@ -173,18 +174,48 @@ export default function HomePage() {
                       <h3 className="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">
                         {t(`services.${service.key}.title`)}
                       </h3>
-                      <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                        {t(`services.${service.key}.body`)}
-                      </p>
+                      <div className="font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: t(`services.${service.key}.body`) }}
+                      />
                     </div>
                   ))}
+                </div>
+
+                {/* 07 — Ongoing Support (full width) */}
+                <div className="glass-card rounded-lg p-0 md:p-0 mt-6 md:mt-8 hover:border-tertiary/50 transition-all duration-500 group reveal flex flex-col md:flex-row overflow-hidden">
+                  {/* Image side — fades into card */}
+                  <div className="support-card-image w-full md:w-[280px] shrink-0 relative min-h-[180px] sm:min-h-[220px] md:min-h-[280px] opacity-35"
+                    style={{
+                      backgroundImage: `url(${managerImg})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                  />
+                  {/* Content */}
+                  <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="material-symbols-outlined text-2xl text-amber-400">star</span>
+                      <span className="font-label-caps text-label-caps text-on-surface-variant">
+                        {t("services.support.label")}
+                      </span>
+                    </div>
+                    <h3 className="font-headline-md text-headline-md text-on-surface mb-3 group-hover:text-tertiary transition-colors">
+                      {t("services.support.title")}
+                    </h3>
+                    <div className="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-3"
+                      dangerouslySetInnerHTML={{ __html: t("services.support.body") }}
+                    />
+                    <div className="font-bold text-tertiary text-sm tracking-wide">
+                      {t("services.support.tagline")}
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
 
             <section id="approach" className="glass-section pb-24 px-margin-mobile md:px-margin-desktop">
               <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-                <div className="frosted-panel lg:col-span-5 bg-surface-container rounded-xl p-10 flex flex-col justify-center border border-surface-container-highest reveal">
+                <div className="frosted-panel lg:col-span-5 bg-surface-container rounded-xl p-6 sm:p-8 lg:p-10 flex flex-col justify-center border border-surface-container-highest reveal">
                   <span className="material-symbols-outlined text-5xl text-tertiary mb-8">shield_with_heart</span>
                   <h2 className="clamp-lg font-bold text-on-surface mb-6">{t("approach.title")}</h2>
                   <p className="font-body-lg text-body-lg text-on-surface-variant mb-6">{t("approach.body")}</p>
@@ -202,12 +233,12 @@ export default function HomePage() {
                 </div>
 
                 <div className="lg:col-span-7 grid grid-rows-2 gap-6 md:gap-8">
-                  <div className="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-100 flex flex-col justify-center">
+                  <div className="frosted-panel bg-surface-container rounded-xl p-6 sm:p-8 border border-surface-container-highest reveal delay-100 flex flex-col justify-center">
                     <h3 className="font-headline-md text-headline-md text-on-surface mb-4">{t("approach.subtitle")}</h3>
                     <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
                       {t("approach.description")}
                     </p>
-                    <div className="mt-6 flex gap-3">
+                    <div className="mt-6 flex flex-wrap gap-3">
                       {regions.map((region) => (
                         <span key={region} className="px-3 py-1.5 bg-surface-bright rounded text-xs font-semibold text-primary">
                           {region}
@@ -217,12 +248,12 @@ export default function HomePage() {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                    <div className="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-200">
+                    <div className="frosted-panel bg-surface-container rounded-xl p-6 sm:p-8 border border-surface-container-highest reveal delay-200">
                       <span className="material-symbols-outlined text-3xl text-tertiary mb-4">analytics</span>
                       <h4 className="font-label-caps text-label-caps text-on-surface mb-2">{t("approach.valueTitle")}</h4>
                       <p className="font-body-md text-body-md text-on-surface-variant">{t("approach.valueBody")}</p>
                     </div>
-                    <div className="frosted-panel bg-surface-container rounded-xl p-8 border border-surface-container-highest reveal delay-300">
+                    <div className="frosted-panel bg-surface-container rounded-xl p-6 sm:p-8 border border-surface-container-highest reveal delay-300">
                       <span className="material-symbols-outlined text-3xl text-tertiary mb-4">health_and_safety</span>
                       <h4 className="font-label-caps text-label-caps text-on-surface mb-2">{t("approach.riskTitle")}</h4>
                       <p className="font-body-md text-body-md text-on-surface-variant">{t("approach.riskBody")}</p>

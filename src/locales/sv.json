@@ -16,37 +16,43 @@
     "coreCapabilities": "Kärnkompetenser"
   },
   "services": {
-    "title": "Tjänster byggda för verkliga fältförhållanden",
+    "title": "Vår process",
     "description": "En välskött skog blir starkare, säkrare och mer värdefull över tid. Vi erbjuder praktiska skogstjänster för markägare, företag och infrastrukturprojekt — med noggrann planering, tillförlitligt fältarbete och respekt för den omgivande miljön.",
     "infrastructure": {
-      "label": "01 / INFRASTRUKTUR",
-      "title": "Säkra korridorer. Tillförlitlig åtkomst. Färre risker.",
-      "body": "Vi röjer sly, mindre träd och riskträd längs kraftledningar och servicekorridorer. Arbetet minskar risken för avbrott, förbättrar åtkomsten för underhållsteam och gör området säkrare för markägare och infrastrukturoperatörer."
+      "label": "01 / PROJEKTBEDÖMNING",
+      "title": "Projektbedömning",
+      "body": "Vi börjar med att noggrant granska projektets omfattning, plats och specifika kundkrav. Detta gör att vi kan förstå uppdragets komplexitet och bestämma den mest effektiva metoden."
     },
     "silviculture": {
-      "label": "02 / SKOGSVÅRD",
-      "title": "Ge de bästa träden utrymme att växa.",
-      "body": "Ungskogsröjning tar bort svaga, skadade eller felplacerade träd så att de starkaste träden kan utveckla bättre stammar, kronor och rotsystem. Utfört vid rätt tidpunkt förbättrar röjningen framtida gallring och stödjer en friskare och mer värdefull skog."
+      "label": "02 / PLANERING OCH RESURSTILLDELNING",
+      "title": "Planering och resurstilldelning",
+      "body": "Baserat på projektbedömningen skapar vi en tydlig arbetsplan och allokerar rätt teamstorlek, utrustning och resurser. Vår flexibla arbetsstyrka gör att vi kan skala verksamheten beroende på projektkraven."
     },
     "risk": {
-      "label": "03 / RISKHANTERING",
-      "title": "Borttagning av farliga träd",
-      "body": "Vi tar bort lutande, stormskadade och strukturellt osäkra träd nära tillfartsvägar, byggnader, ledningskorridorer och arbetsområden med kontrollerad planering och noggrant utförande."
+      "label": "03 / MOBILISERING",
+      "title": "Mobilisering",
+      "body": "Våra team är redo att mobilisera snabbt i <b>Sverige</b>, <b>Finland</b>, <b>Baltikum</b> och andra internationella platser vid behov. Detta inkluderar:<ul style=\"list-style-type: disc; padding-left: 1.25rem; margin-top: 0.5rem;\"><li style=\"margin-bottom: 0.25rem;\">Teamutplacering baserat på projektstorlek</li><li style=\"margin-bottom: 0.25rem;\">Utrustnings- och verktygsförberedelse</li><li style=\"margin-bottom: 0.25rem;\">Rese- och boendekoordinering</li><li style=\"margin-bottom: 0.25rem;\">Platsåtkomst och säkerhetsberedskap</li><li style=\"margin-bottom: 0.25rem;\">Flexibel skalning för akuta skogsarbeten</li></ul>"
     },
     "regeneration": {
-      "label": "04 / FÖRYNGRING",
-      "title": "Skogsplantering och föryngring",
-      "body": "Från markberedning till planteringsstöd hjälper vi till att etablera unga skogsbestånd med praktiskt avstånd, artmedveten planering och långsiktig skogshälsa i fokus."
+      "label": "04 / PROJEKTGENOMFÖRANDE",
+      "title": "Projektgenomförande",
+      "body": "Med professionella röjsågar, motorsågar och beprövade skogsbruksmetoder utför våra erfarna specialister arbetet effektivt och säkert. Detta inkluderar tjänster som:<ul style=\"list-style-type: disc; padding-left: 1.25rem; margin-top: 0.5rem;\"><li style=\"margin-bottom: 0.25rem;\">Röjning</li><li style=\"margin-bottom: 0.25rem;\">Plantering</li><li style=\"margin-bottom: 0.25rem;\">Vegetationsrensning</li><li style=\"margin-bottom: 0.25rem;\">Förberedande avverkning</li><li style=\"margin-bottom: 0.25rem;\">Trädfällning</li></ul>"
     },
     "clearing": {
-      "label": "05 / RÖJNING",
-      "title": "Slyröjning",
-      "body": "Öppna tillfartsvägar, återta igenvuxna områden och förbered mark för underhåll eller framtida arbete med effektiv röjning av sly och mindre träd."
+      "label": "05 / KVALITETSKONTROLL",
+      "title": "Kvalitetskontroll",
+      "body": "Under varje skede av projektet säkerställer våra handledare att arbetet uppfyller överenskomna standarder, säkerhetskrav och kundförväntningar."
     },
     "cutting": {
-      "label": "06 / FÄLLNING",
-      "title": "Trädfällning",
-      "body": "Kontrollerad fällning för markförvaltning, säkerhet, åtkomst och skogsskötsel — planerad efter terräng, omgivning och projektkrav."
+      "label": "06 / SLUTFÖRANDE OCH KUNDGRANSKNING",
+      "title": "Slutförande och kundgranskning",
+      "body": "När projektet är slutfört gör vi en slutgranskning för att säkerställa att allt arbete har levererats enligt specifikation och för att garantera kundnöjdhet."
+    },
+    "support": {
+      "label": "07 / FORTSATT STÖD",
+      "title": "Fortsatt stöd",
+      "body": "Vid behov fortsätter vi att stödja våra kunder genom ytterligare arbetskraftslösningar, inklusive skogsmaskinförare och skickliga skogsarbetare.",
+      "tagline": "Pålitlig planering. Skickligt utförande. Professionella resultat."
     }
   },
   "approach": {
@@ -70,16 +76,22 @@
   "about": {
     "label": "OM OSS",
     "back": "Tillbaka till startsidan",
-    "slide1_heading": "Vårt uppdrag",
-    "slide2_heading": "Vår vision",
-    "slide3_heading": "Våra värderingar",
-    "slide4_heading": "Vår process",
-    "slide5_heading": "Vårt löfte",
-    "slide1_body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    "slide2_body": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    "slide3_body": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
-    "slide4_body": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
-    "slide5_body": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
+    "promise_intro": "På Iskaro AB är vi engagerade i att leverera pålitliga, effektiva och högkvalitativa skogstjänster på varje projekt.",
+    "promise_subtitle": "Vi lovar att tillhandahålla:",
+    "slide0_heading": "På <span class=\"text-tertiary\">Iskaro AB</span> är vi engagerade i att leverera pålitliga, effektiva och högkvalitativa skogstjänster på varje projekt.",
+    "slide1_heading": "1. Professionell expertis",
+    "slide2_heading": "2. Säkerhet först",
+    "slide3_heading": "3. Flexibilitet",
+    "slide4_heading": "4. Pålitlighet och ansvar",
+    "slide5_heading": "5. Engagemang för partnerskap",
+    "slide1_body": "Våra team består av erfarna skogsbruksproffs med kunskap och praktiska färdigheter som krävs för att leverera enastående resultat.",
+    "slide2_body": "Vi prioriterar säkra arbetsmetoder och säkerställer att alla operationer utförs med strikt uppmärksamhet på säkerhetsstandarder.",
+    "slide3_body": "Vi anpassar vår arbetsstyrka, resurser och operativa kapacitet för att matcha varje projekts specifika krav — oavsett omfattning eller plats.",
+    "slide4_body": "Vi håller överenskomna deadlines, upprätthåller tydlig kommunikation och tar fullt ansvar för varje skede av projektet.",
+    "slide5_body": "Vi bygger långsiktiga relationer genom förtroende, transparens och konsekvent prestation.",
+    "slide6_heading": "Kvalitetsresultat",
+    "slide6_body": "Vi fokuserar på precision, effektivitet och långsiktigt värde och säkerställer att varje projekt slutförs till högsta professionella standard.",
+    "slide7_text": "På <span class=\"text-tertiary\">Iskaro AB</span> är vårt löfte enkelt:<br/>Expert skogstjänster för dina behov,<br/>levererat med professionalism, pålitlighet och resultat du kan lita på."
   },
   "footer": {
     "copyright": "© 2026 Iskaro AB. Moderna skogs-, röjnings- och kraftledningsgattetjänster i Estland, Finland och Sverige.",
